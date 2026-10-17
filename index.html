@@ -1,1 +1,130 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Asistente de Parqueo IoT</title><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet"><style>:root{--bg:#0f172a;--card:#1e293b;--ink:#f8fafc;--mut:#94a3b8;--ln:#334155;--blue:#3b82f6;--v:#10b981;--a:#f59e0b;--r:#ef4444;--st:var(--v)}*{box-sizing:border-box;margin:0}body{font:500 15px/1.4 Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}header{max-width:1100px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}header h1{font-size:21px;font-weight:800;flex:1}button{font:inherit;cursor:pointer;color:inherit}.pill{padding:6px 13px;border-radius:99px;background:var(--card);border:1px solid var(--ln);font-weight:700;font-size:13px;display:flex;gap:7px;align-items:center}.pill i{width:9px;height:9px;border-radius:50%;background:var(--mut)}.pill.on i{background:var(--v);box-shadow:0 0 8px var(--v)}main{max-width:1100px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}@media (max-width:860px){main{grid-template-columns:1fr}}.card{background:var(--card);border-radius:22px;border:1px solid var(--ln);box-shadow:0 10px 30px rgba(0,0,0,.5);overflow:hidden}.scene{padding:8px}.scene svg{width:100%;height:auto;display:block}#car{transition:transform .6s ease}.bar{background:var(--st);color:#fff;text-align:center;font-weight:800;padding:13px;transition:background .4s}.in{padding:18px 20px;display:grid;gap:14px}.row{display:flex;align-items:center;gap:12px}.badge{width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--ln);display:grid;place-items:center;font-weight:800;color:var(--mut)}.row h2{font-size:18px;font-weight:800}.mut{color:var(--mut);font-size:13px}.big{font-size:60px;font-weight:800;line-height:1;text-align:center;margin:10px 0}.big small{font-size:18px;color:var(--mut)}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{flex:1;min-width:76px;padding:10px;border-radius:99px;border:1px solid var(--ln);background:var(--bg);font-weight:800;transition:.3s}.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}#mute.on{background:var(--r);border-color:var(--r);color:#fff}h3{font-size:14px;font-weight:800;text-align:center;margin-top:10px}.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:11px;color:var(--mut)}.cal div{padding:5px 0;border-radius:12px}.cal b{display:block;color:var(--ink);font-size:14px}.cal .today{background:var(--ln);outline:1px solid var(--blue)}.dot{width:25px;height:25px;border-radius:50%;margin:5px auto 0;background:var(--bg);color:#fff;font-size:8px;font-weight:800;display:grid;place-items:center;border:1px solid var(--ln)}.leg{text-align:center;font-size:11px;color:var(--mut)}.ks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.ks div{background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:10px 4px}.ks b{display:block;font-size:17px;color:var(--blue)}.ks span{font-size:11px;color:var(--mut)}ul{list-style:none;padding:0;display:grid;gap:8px}li{display:flex;gap:10px;align-items:center;font-size:13px;background:var(--bg);padding:8px 12px;border-radius:10px;border:1px solid var(--ln)}li i{width:10px;height:10px;border-radius:50%;flex:none}li span{flex:1}li em{font-style:normal;color:var(--mut);font-size:12px}</style></head><body><header><h1>Asistente de Parqueo</h1><div class="pill" id="st"><i></i><span id="stt">Iniciando...</span></div></header><main><section class="card scene"><svg viewBox="0 0 720 430" role="img"><g transform="translate(230 50) matrix(.866 .5 -.866 .5 0 0)"><rect x="-30" y="-30" width="565" height="230" rx="20" fill="#1e293b" stroke="#334155" stroke-width="2" /><rect x="0" y="0" width="500" height="170" fill="#0f172a" stroke="#334155" stroke-width="2" stroke-dasharray="10 8" /><rect id="zv" y="8" height="154" fill="#10b981" opacity=".15" /><rect id="zy" y="8" height="154" fill="#f59e0b" opacity=".25" /><rect id="zr" y="8" height="154" fill="#ef4444" opacity=".35" /><text x="30" y="118" font-size="72" font-weight="800" fill="#334155">01</text><rect x="500" y="-12" width="28" height="194" fill="#475569" /><rect x="494" y="75" width="8" height="20" fill="#3b82f6" /><g id="car"></g></g></svg></section><section class="card" aria-live="polite"><div class="bar" id="bar">Cargando datos...</div><div class="in"><div class="row"><div class="badge">P</div><div><h2>Plaza de parqueo 01</h2><div class="mut" id="sub">Ajustando perfil...</div></div></div><div class="big"><span id="dist">--</span> <small>cm al muro</small></div><div class="chips"><button class="chip" id="p0">Moto</button> <button class="chip" id="p1">Sedán</button> <button class="chip" id="p2">Pickup</button></div><button class="chip" id="mute">Silenciar alarma</button><h3>Esta semana</h3><div class="cal" id="cal"></div><div class="leg">Verde: libre · Amarillo: ocupación corta · Rojo: ocupación larga</div><div class="ks"><div><b id="k1">--</b><span>Ocupaciones</span></div><div><b id="k2">--</b><span>Tiempo medio</span></div><div><b id="k3">--</b><span>Dist. final</span></div></div><h3>Últimos registros</h3><ul id="hist"></ul></div></section></main><script>const tk="PaKCqRYN8uo1wimvjSJRBgLJSAZI5dhl",$=t=>document.getElementById(t),API="https://blynk.cloud/external/api",PU=[20,30,50],NP=["Moto","Sedán","Pickup"],DN=["LUN","MAR","MIE","JUE","VIE","SAB","DOM"],CF=[{L:70,H:26,c:"#3b82f6"},{L:150,H:72,c:"#a855f7"},{L:180,H:82,c:"#cbd5e1"}];let tLoc=0,lp=-1,H=[],S={d:null,e:"VERDE",p:1,s:0,on:!1},demo="PaKCqRYN-PEGAR-AQUI-EL-RESTO-DEL-TOKEN"===tk||""===tk;const fmt=t=>(t=Math.round(t),t<60?t+" s":t<3600?Math.floor(t/60)+" min":Math.floor(t/3600)+" h");function car(t){const{L:e,H:n,c:o}=CF[t],a=8,r=85-n/2;$("car").innerHTML=`<polygon points="0,${r} ${e},${r} ${e+a},${r+a} ${e+a},${r+n+a} ${a},${r+n+a} 0,${r+n}" fill="#000" opacity=".4"/><rect x="0" y="${r}" width="${e}" height="${n}" rx="${t?10:6}" fill="${o}"/>`+(t?`<rect x="${.3*e}" y="${r+7}" width="${.42*e}" height="${n-14}" rx="6" fill="#1e293b"/><rect x="${e-5}" y="${r+6}" width="5" height="12" fill="#fcd34d"/><rect x="${e-5}" y="${r+n-18}" width="5" height="12" fill="#fcd34d"/>`:`<rect x="${.35*e}" y="${r+4}" width="${.3*e}" height="${n-8}" rx="4" fill="#1e293b"/>`)}function scene(){const t=PU[S.p],e=CF[S.p].L,n=3.9*t,o=(486-e)/n,a=Math.min(null==S.d||isNaN(S.d)?n:S.d,n);$("car").style.transform=`translateX(${500-o*a-e}px)`;const r=(t,e,n)=>{$(t).setAttribute("x",e),$(t).setAttribute("width",Math.max(n,0))};r("zr",500-o*t,o*t),r("zy",500-3*o*t,2*o*t),r("zv",14,500-3*o*t-14)}function ui(){document.documentElement.style.setProperty("--st","var("+{VERDE:"--v",AMARILLO:"--a",ROJO:"--r"}[S.e]+")");const t=new Date().toLocaleDateString("es",{weekday:"long",day:"numeric",month:"numeric"});$("bar").textContent=t[0].toUpperCase()+t.slice(1)+" · "+{VERDE:"Libre",AMARILLO:"Precaución",ROJO:"Alto"}[S.e],$("dist").textContent=null==S.d||isNaN(S.d)?"--":Math.round(S.d),$("sub").textContent="Perfil "+NP[S.p]+" · Zona roja a los "+PU[S.p]+" cm",[0,1,2].forEach((t=>$("p"+t).classList.toggle("on",S.p===t))),$("mute").classList.toggle("on",!!S.s),$("mute").textContent=S.s?"Alarma Silenciada":"Silenciar alarma",$("st").className="pill"+(S.on?" on":""),$("stt").textContent=demo?"Modo Prueba (Pon tu Token)":S.on?"Placa Conectada":"Sin Conexión",lp!==S.p&&(car(S.p),lp=S.p),scene()}function simular(){const t=Date.now()/1e3,e=PU[S.p];S.d=Math.max(3,Math.round(70+75*Math.sin(t/7))),S.e=S.d<=e?"ROJO":S.d<=3*e?"AMARILLO":"VERDE",S.on=!0}async function poll(){if(demo)simular();else try{const t=await fetch(`${API}/get?token=${tk}&v0&v1&v2&v3`);if(!t.ok)throw new Error;const e=await t.json();S.d=null==e.v0?null:+e.v0;S.e=String(e.v1).replace(/"/g,"").toUpperCase();["VERDE","AMARILLO","ROJO"].includes(S.e)||(S.e="VERDE");Date.now()-tLoc>3e3&&(S.p=[0,1,2].includes(+e.v2)?+e.v2:1,S.s=+e.v3?1:0);S.on=!0}catch(t){S.on=!1}ui()}function send(t,e){tLoc=Date.now(),demo||fetch(`${API}/update?token=${tk}&${t}=${e}`).catch((()=>{}))}[0,1,2].forEach((t=>$("p"+t).onclick=()=>{S.p=t,send("v2",t),ui()})),$("mute").onclick=()=>{S.s=S.s?0:1,send("v3",S.s),ui()};function hist(){H=[];const t=Date.now();for(let e=0;e<9;e++){const n=t-(.8*e+.3)*864e5*.9,o=[900,2400,7200,14e3][e%4];H.push({t:new Date(n-1e3*o),evento:"ESTACIONADO",perfil:NP[e%3],dist:18+2*e,dur:0},{t:new Date(n),evento:"SALIDA",perfil:NP[e%3],dist:120,dur:o})}H.sort(((t,e)=>t.t-e.t)),cal()}function cal(){const t=new Date,e=new Date(t.getFullYear(),t.getMonth(),t.getDate()),n=new Date(e);n.setDate(e.getDate()-(t.getDay()+6)%7);const o=[];let a=null;H.forEach((t=>{"ESTACIONADO"===t.evento?a=t.t:"SALIDA"===t.evento&&(o.push([a||new Date(t.t-1e3*t.dur),t.t]),a=null)})),a&&o.push([a,t]);let r="";for(let a=0;a<7;a++){const s=new Date(n);s.setDate(n.getDate()+a);let l="";for(let e=0;e<2;e++){const n=+s+432e5*e,a=n+432e5;let r=0;o.forEach((([t,e])=>{r+=Math.max(0,Math.min(a,+e)-Math.max(n,+t))})),l+=`<div class="dot" style="background:${n>+t?"transparent":0===r?"var(--v)":r<72e5?"var(--a)":"var(--r)"}">${e?"PM":"AM"}</div>`}r+=`<div class="${+s==+e?"today":""}">${DN[a]}<b>${s.getDate()}</b>${l}</div>`}$("cal").innerHTML=r;const s=H.filter((t=>t.t>=n)),l=s.filter((t=>"ESTACIONADO"===t.evento)),c=s.filter((t=>"SALIDA"===t.evento)),i=(t,e)=>t.reduce(((t,n)=>t+(+n[e]||0)),0)/t.length;$("k1").textContent=l.length,$("k2").textContent=c.length?fmt(i(c,"dur")):"--",$("k3").textContent=l.length?Math.round(i(l,"dist"))+" cm":"--",$("hist").innerHTML=H.slice(-6).reverse().map((t=>{const e="SALIDA"===t.evento;return`<li><i style="background:var(${e?"--v":"--r"})"></i><span><b>${e?"Salida":"Ocupado"}</b> · ${t.perfil}</span><em>${t.t.toLocaleString("es",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</em></li>`})).join("")}hist(),poll(),setInterval(poll,1e3);</script></body></html>
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Asistente de Parqueo IoT</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f9;--ink:#1d2b3a;--mut:#7a8aa0;--ln:#e3eaf3;--blue:#3b8bf0;--v:#19b97a;--a:#f4b400;--r:#e5484d;--st:var(--v)}
+*{box-sizing:border-box;margin:0}
+body{font:500 15px/1.4 Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+header{max-width:1100px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header h1{font-size:21px;font-weight:800;flex:1}
+button{font:inherit;cursor:pointer;color:inherit}
+.pill,.ib{padding:6px 13px;border-radius:99px;background:#fff;border:1px solid var(--ln);font-weight:700;font-size:13px}
+.pill{display:flex;gap:7px;align-items:center}.pill i{width:9px;height:9px;border-radius:50%;background:var(--mut)}.pill.on i{background:var(--v)}
+main{max-width:1100px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+@media(max-width:860px){main{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(40,70,110,.1);overflow:hidden}
+.scene{padding:8px}.scene svg{width:100%;height:auto;display:block}
+#car{transition:transform .6s ease}
+.bar{background:var(--st);color:#fff;text-align:center;font-weight:800;padding:13px;transition:background .4s}
+.in{padding:18px 20px;display:grid;gap:14px}
+.row{display:flex;align-items:center;gap:12px}
+.badge{width:42px;height:42px;border-radius:50%;background:#eceff4;display:grid;place-items:center;font-weight:800;color:var(--mut)}
+.row h2{font-size:18px;font-weight:800}.mut{color:var(--mut);font-size:13px}
+.big{font-size:60px;font-weight:800;line-height:1;text-align:center}.big small{font-size:18px;color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{flex:1;min-width:76px;padding:10px;border-radius:99px;border:1px solid var(--ln);background:#fff;font-weight:800}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+h3{font-size:14px;font-weight:800;text-align:center}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:11px;color:var(--mut)}
+.cal div{padding:5px 0;border-radius:12px}.cal b{display:block;color:var(--ink);font-size:14px}.cal .today{background:#eaf3ff;outline:1px solid #b9d6fb}
+.dot{width:25px;height:25px;border-radius:50%;margin:5px auto 0;background:#e8edf3;color:#fff;font-size:8px;font-weight:800;display:grid;place-items:center}
+.leg{text-align:center;font-size:11px;color:var(--mut)}
+.ks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.ks div{background:#f5f8fc;border-radius:14px;padding:10px 4px}.ks b{display:block;font-size:17px}.ks span{font-size:11px;color:var(--mut)}
+ul{list-style:none;padding:0;display:grid;gap:8px}
+li{display:flex;gap:10px;align-items:center;font-size:13px}li i{width:10px;height:10px;border-radius:50%;flex:none}li span{flex:1}li em{font-style:normal;color:var(--mut);font-size:12px}
+dialog{border:0;border-radius:18px;padding:22px;width:min(440px,92vw);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(20,30,50,.45)}
+dialog label{display:block;font-weight:800;font-size:13px;margin:12px 0 4px}
+dialog input{width:100%;padding:10px;border:1px solid var(--ln);border-radius:10px;font:inherit}
+.acts{display:flex;gap:8px;margin-top:16px}.acts button{flex:1;padding:10px;border-radius:99px;border:1px solid var(--ln);background:#fff;font-weight:800}.acts .go{background:var(--blue);color:#fff;border-color:var(--blue)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><h1>Asistente de Parqueo</h1><div class="pill" id="st"><i></i><span id="stt">Conectando…</span></div><button class="ib" id="cfg">Configurar</button></header>
+<main>
+<section class="card scene">
+<svg viewBox="0 0 720 430" role="img" aria-label="Plaza de parqueo en vista isométrica con el vehículo acercándose al muro">
+<g transform="translate(230 50) matrix(.866 .5 -.866 .5 0 0)">
+<rect x="-30" y="-30" width="565" height="230" rx="20" fill="#fff" stroke="#dbe6f3" stroke-width="2"/>
+<rect x="0" y="0" width="500" height="170" fill="#eef4fb" stroke="#c7d6e8" stroke-width="2" stroke-dasharray="10 8"/>
+<rect id="zv" y="8" height="154" fill="#19b97a" opacity=".2"/><rect id="zy" y="8" height="154" fill="#f4b400" opacity=".28"/><rect id="zr" y="8" height="154" fill="#e5484d" opacity=".25"/>
+<text x="30" y="118" font-size="72" font-weight="800" fill="#bcd4f3">01</text>
+<rect x="500" y="-12" width="28" height="194" fill="#8aa0bd"/><rect x="494" y="75" width="8" height="20" fill="#3b8bf0"/>
+<g id="car"></g></g></svg>
+</section>
+<section class="card" aria-live="polite">
+<div class="bar" id="bar">Cargando…</div>
+<div class="in">
+<div class="row"><div class="badge">P</div><div><h2>Plaza de parqueo 01</h2><div class="mut" id="sub"></div></div></div>
+<div class="big"><span id="dist">--</span> <small>cm al muro</small></div>
+<div class="chips"><button class="chip" id="p0">Moto</button><button class="chip" id="p1">Sedán</button><button class="chip" id="p2">Pickup</button></div>
+<button class="chip" id="mute">Silenciar alarma</button>
+<h3>Esta semana</h3><div class="cal" id="cal"></div>
+<div class="leg">Verde: libre · Amarillo: menos de 2 h ocupado · Rojo: 2 h o más</div>
+<div class="ks"><div><b id="k1">--</b><span>Ocupaciones</span></div><div><b id="k2">--</b><span>Tiempo medio</span></div><div><b id="k3">--</b><span>Distancia final</span></div></div>
+<h3>Últimos registros</h3><ul id="hist"></ul>
+</div></section></main>
+<dialog id="dlg"><h2>Conexión</h2><p class="mut" style="margin-top:6px">Se guarda solo en este navegador. No la subas a GitHub.</p>
+<label for="ftk">Token de Blynk</label><input id="ftk" autocomplete="off">
+<label for="fsu">URL del script de Google Sheets (termina en /exec)</label><input id="fsu" autocomplete="off">
+<div class="acts"><button id="dem">Modo demo</button><button class="go" id="sav">Guardar</button></div></dialog>
+<script>
+const $=i=>document.getElementById(i),API='https://blynk.cloud/external/api',PU=[20,30,50],NP=['Moto','Sedán','Pickup'],DN=['LUN','MAR','MIE','JUE','VIE','SAB','DOM'];
+const CF=[{L:70,H:26,c:'#3b8bf0'},{L:150,H:72,c:'#e86fc2'},{L:180,H:82,c:'#5b6cff'}];
+const hp=new URLSearchParams(location.hash.slice(1));
+if(hp.get('t')){localStorage.pt=hp.get('t');if(hp.get('s'))localStorage.ps=hp.get('s');history.replaceState(null,'',location.pathname)}
+let tk=localStorage.pt||'',su=localStorage.ps||'',demo=!tk,tLoc=0,lp=-1,hb=null,tHb=0,H=[],S={d:null,e:'VERDE',p:1,s:0,on:false};
+const fmt=s=>{s=Math.round(s);return s<60?s+' s':s<3600?Math.floor(s/60)+' min '+s%60+' s':Math.floor(s/3600)+' h '+Math.floor(s%3600/60)+' min'};
+function car(p){const{L,H,c}=CF[p],s=8,y=85-H/2;
+$('car').innerHTML=`<polygon points="0,${y} ${L},${y} ${L+s},${y+s} ${L+s},${y+H+s} ${s},${y+H+s} 0,${y+H}" fill="#000" opacity=".3"/><rect x="0" y="${y}" width="${L}" height="${H}" rx="${p?10:6}" fill="${c}"/>`+(p?`<rect x="${L*.3}" y="${y+7}" width="${L*.42}" height="${H-14}" rx="6" fill="#dcebff"/><rect x="${L-5}" y="${y+6}" width="5" height="12" fill="#fff6bf"/><rect x="${L-5}" y="${y+H-18}" width="5" height="12" fill="#fff6bf"/>`:`<rect x="${L*.35}" y="${y+4}" width="${L*.3}" height="${H-8}" rx="4" fill="#dcebff"/>`)}
+function scene(){const U=PU[S.p],L=CF[S.p].L,mx=U*3.9,k=(486-L)/mx,d=Math.min(S.d==null||isNaN(S.d)?mx:S.d,mx);
+$('car').style.transform=`translateX(${500-k*d-L}px)`;
+const z=(i,x,w)=>{$(i).setAttribute('x',x);$(i).setAttribute('width',Math.max(w,0))};
+z('zr',500-k*U,k*U);z('zy',500-k*3*U,k*2*U);z('zv',14,500-k*3*U-14)}
+function ui(){
+document.documentElement.style.setProperty('--st','var('+{VERDE:'--v',AMARILLO:'--a',ROJO:'--r'}[S.e]+')');
+const f=new Date().toLocaleDateString('es',{weekday:'long',day:'numeric',month:'numeric'});
+$('bar').textContent=f[0].toUpperCase()+f.slice(1)+' · '+{VERDE:'Libre',AMARILLO:'Precaución',ROJO:'Alto'}[S.e];
+$('dist').textContent=S.d==null||isNaN(S.d)?'--':Math.round(S.d);
+$('sub').textContent='Perfil '+NP[S.p]+' · alto a ~'+PU[S.p]+' cm';
+[0,1,2].forEach(i=>$('p'+i).classList.toggle('on',S.p===i));
+$('mute').classList.toggle('on',!!S.s);$('mute').textContent=S.s?'Alarma silenciada (tocar para activar)':'Silenciar alarma';
+$('st').className='pill'+(S.on?' on':'');$('stt').textContent=demo?'Modo demo':S.on?'Placa en línea':'Placa sin conexión';
+if(lp!==S.p){car(S.p);lp=S.p}scene()}
+function simular(){const t=Date.now()/1000,U=PU[S.p];S.d=Math.max(3,Math.round(70+75*Math.sin(t/7)));S.e=S.d<=U?'ROJO':S.d<=3*U?'AMARILLO':'VERDE';S.on=true}
+async function poll(){
+if(demo)simular();else try{
+const j=await(await fetch(`${API}/get?token=${tk}&v0&v1&v2&v3`)).json();
+S.d=j.v0==null?null:+j.v0;S.e=String(j.v1).replace(/"/g,'');if(!['VERDE','AMARILLO','ROJO'].includes(S.e))S.e='VERDE';
+if(Date.now()-tLoc>3000){S.p=[0,1,2].includes(+j.v2)?+j.v2:1;S.s=+j.v3?1:0}
+try{const h=parseFloat(await(await fetch(`${API}/get?token=${tk}&v4`)).text());if(!isNaN(h)){if(hb!==null&&h!==hb)tHb=Date.now();hb=h}}catch(e){}
+S.on=(await(await fetch(`${API}/isHardwareConnected?token=${tk}`)).text()).trim()==='true'||Date.now()-tHb<30000}catch(e){S.on=false}
+ui()}
+function send(pin,v){tLoc=Date.now();if(!demo)fetch(`${API}/update?token=${tk}&${pin}=${v}`).catch(()=>{})}
+[0,1,2].forEach(i=>$('p'+i).onclick=()=>{S.p=i;send('v2',i);ui()});
+$('mute').onclick=()=>{S.s=S.s?0:1;send('v3',S.s);ui()};
+function demoH(){H=[];const n=Date.now();for(let i=0;i<9;i++){const t=n-(i*.8+.3)*864e5*.9,d=[900,2400,7200,14000][i%4];
+H.push({t:new Date(t-d*1e3),evento:'ESTACIONADO',perfil:NP[i%3],dist:18+i*2,dur:0},{t:new Date(t),evento:'SALIDA',perfil:NP[i%3],dist:120,dur:d})}H.sort((a,b)=>a.t-b.t)}
+async function hist(){
+if(demo){if(!H.length)demoH()}else if(su)try{H=(await(await fetch(su+'?accion=leer')).json()).map(x=>({...x,t:new Date(x.fecha)})).filter(x=>!isNaN(x.t)).sort((a,b)=>a.t-b.t)}catch(e){}
+cal()}
+function cal(){
+const now=new Date(),td=new Date(now.getFullYear(),now.getMonth(),now.getDate()),m=new Date(td);m.setDate(td.getDate()-((now.getDay()+6)%7));
+const iv=[];let ini=null;
+H.forEach(e=>{if(e.evento==='ESTACIONADO')ini=e.t;else if(e.evento==='SALIDA'){iv.push([ini||new Date(e.t-e.dur*1e3),e.t]);ini=null}});
+if(ini)iv.push([ini,now]);
+let h='';
+for(let i=0;i<7;i++){const d0=new Date(m);d0.setDate(m.getDate()+i);let x='';
+for(let k=0;k<2;k++){const a=+d0+k*432e5,b=a+432e5;let o=0;iv.forEach(([s,e])=>{o+=Math.max(0,Math.min(b,+e)-Math.max(a,+s))});
+x+=`<div class="dot" style="background:${a>+now?'#e8edf3':o===0?'var(--v)':o<72e5?'var(--a)':'var(--r)'}" title="${o?'Ocupado '+fmt(o/1e3):'Libre'}">${k?'PM':'AM'}</div>`}
+h+=`<div class="${+d0===+td?'today':''}">${DN[i]}<b>${d0.getDate()}</b>${x}</div>`}
+$('cal').innerHTML=h;
+const wk=H.filter(e=>e.t>=m),es=wk.filter(e=>e.evento==='ESTACIONADO'),ss=wk.filter(e=>e.evento==='SALIDA'),av=(a,f)=>a.reduce((s,e)=>s+(+e[f]||0),0)/a.length;
+$('k1').textContent=es.length;$('k2').textContent=ss.length?fmt(av(ss,'dur')):'--';$('k3').textContent=es.length?Math.round(av(es,'dist'))+' cm':'--';
+$('hist').innerHTML=H.slice(-6).reverse().map(e=>{const sa=e.evento==='SALIDA';return `<li><i style="background:var(${sa?'--v':'--r'})"></i><span><b>${sa?'Salida':'Estacionado'}</b> · ${e.perfil} · ${sa?fmt(e.dur):Math.round(e.dist)+' cm'}</span><em>${e.t.toLocaleString('es',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</em></li>`}).join('')||'<li class="mut">Sin registros todavía</li>'}
+$('cfg').onclick=()=>{$('ftk').value=tk;$('fsu').value=su;$('dlg').showModal()};
+$('sav').onclick=()=>{localStorage.pt=tk=$('ftk').value.trim();localStorage.ps=su=$('fsu').value.trim();demo=!tk;H=[];$('dlg').close();hist();poll()};
+$('dem').onclick=()=>{localStorage.removeItem('pt');localStorage.removeItem('ps');tk=su='';demo=true;H=[];$('dlg').close();hist();poll()};
+hist();poll();setInterval(poll,2000);setInterval(hist,20000);
+</script></body></html>
